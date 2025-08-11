@@ -7,10 +7,10 @@ Next.js TypeScript app for civic transparency: representative lookup, voting rec
    - Review `ENVIRONMENT.md` for all variables.
    - Create a local `.env` with required keys. Minimal to start:
      - GOOGLE_CIVIC_API_KEY, FEC_API_KEY
-     - For federal votes we use GovTrack (no key) with links to House Clerk/Senate roll calls
+      - Federal votes: GovTrack API (no key) with source links to House Clerk and Senate roll calls
      - Optional state votes (preferred direct source):
-       - OPEN_NY_LEG_API_KEY (New York Open Legislation) and OPEN_NY_LEG_API_BASE (defaults to `https://legislation.nysenate.gov/api/3`)
-       - OPENSTATES_API_KEY (fallback), OPENSTATES_API_BASE, OPENSTATES_GRAPHQL_ENDPOINT (if your key has GraphQL access)
+        - OPEN_NY_LEG_API_KEY (New York Open Legislation) and OPEN_NY_LEG_API_BASE (defaults to `https://legislation.nysenate.gov/api/3`)
+        - OPENSTATES_API_KEY (fallback aggregation), OPENSTATES_API_BASE, OPENSTATES_GRAPHQL_ENDPOINT (if your key has GraphQL access via Plural)
    - Use `NEXT_PUBLIC_SITE_URL` for the site origin.
 2. Install deps and run:
    - `npm install`
@@ -35,10 +35,14 @@ Required env (see `ENVIRONMENT.md`):
 - `npm run lint` – lint
 - `npm run typecheck` – TypeScript check
 
-### Notes on state votes and caching
-- State votes prefer direct legislature APIs (e.g., New York Open Legislation). When available, we query the state API first.
-- Fallbacks: OpenStates GraphQL (if enabled), then REST variants. Finally, a recent-jurisdiction heuristic.
-- Supabase-backed cache (optional at runtime): If DATABASE_URL is set and reachable, we upsert person/vote events and enforce a daily budget via `ApiQuota`. If the DB is not reachable, the API continues without caching.
+### Data sources
+- Address → officials: Google Civic Information API (deprecated reps endpoint can 404; we include fallbacks via Census geocoder + GovTrack/OpenStates)
+- Federal votes: GovTrack recent votes for person; linkouts to House Clerk and Senate roll calls
+- State votes: Prefer direct legislature APIs (currently New York Open Legislation); fallback to OpenStates (GraphQL/REST) when enabled; final fallback is a recent-jurisdiction heuristic
+- Campaign finance: FEC API (committees, totals, top contributors)
+
+### Caching & quotas
+- Supabase-backed cache is optional. When enabled, the API stores state vote events and tracks a daily upstream budget via `ApiQuota` to respect provider limits (e.g., OpenStates 500/day). If the DB is unreachable, endpoints still return results without caching.
 
 ### Supabase connectivity
 - For migrations, Prisma requires a direct connection (5432). If your network blocks 5432, paste the SQL in README/TODO into the Supabase SQL editor to create tables.

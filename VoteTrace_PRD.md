@@ -99,10 +99,10 @@
 
 ## 6) Data Sources (initial US focus)
 - **Representative & Voting Data**
-  - ProPublica Congress API; GovTrack; Congress.gov (where accessible).
-  - OpenStates (state-level); state legislature portals; municipal open data portals.
-  - Google Civic Information API (address → officials mapping).
-  - US Census Geocoder/TIGER for districting; state shapefiles.
+  - Federal: GovTrack for person/vote retrieval with source linkouts to House Clerk and Senate roll-call pages; Congress.gov for bill metadata (via data.gov) where needed.
+  - State: Prefer direct legislature APIs/portals (e.g., New York Open Legislation). OpenStates (GraphQL/REST) is used as a fallback where permitted.
+  - Address → officials: Google Civic Information API (with fallbacks via Census geocoder + GovTrack/OpenStates heuristics when Civic fails).
+  - Geographies: US Census Geocoder/TIGER for districting; state shapefiles.
 
 - **Campaign Finance**
   - **Federal**: FEC API (candidate committees, PACs, receipts/disbursements, filings).  
