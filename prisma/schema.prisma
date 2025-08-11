@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Official {
+  id            String   @id @default(cuid())
+  name          String
+  level         String   // federal/state/county/city/district
+  office        String?
+  party         String?
+  jurisdiction  String?
+  externalIds   Json?    // civicApi, propublica, fec, openstates, etc.
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Bill {
+  id           String   @id @default(cuid())
+  jurisdiction String
+  number       String
+  title        String?
+  metadata     Json?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  @@index([jurisdiction, number])
+}
+
+model CachedResponse {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  payload   Json
+  createdAt DateTime @default(now())
+  ttlSec    Int
+}
+
+/// Cached OpenStates person record for quick lookups
+model OpenStatesPerson {
+  id            String   @id // e.g., ocd-person/...
+  name          String
+  jurisdiction  String
+  chamber       String?
+  district      String?
+  raw           Json?
+  updatedAt     DateTime @updatedAt
+  createdAt     DateTime @default(now())
+}
+
+/// Vote events normalized for state legislators (OpenStates)
+model VoteEvent {
+  id           String   @id // stable id from OpenStates
+  jurisdiction String
+  personId     String   // ocd-person id
+  date         DateTime
+  motion       String?
+  billId       String?
+  choice       String?
+  raw          Json?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([personId, date])
+}
+
+/// Quota tracker per day for external APIs
+model ApiQuota {
+  id        String   @id @default(cuid())
+  source    String
+  day       DateTime // truncate to date
+  used      Int      @default(0)
+  limit     Int
+
+  @@unique([source, day])
+}
+
+

@@ -1,0 +1,17 @@
+node_modules
+npm-debug.log
+Dockerfile*
+.dockerignore
+.git
+.gitignore
+.github
+.next/cache
+.next/static
+.vercel
+.env
+.env.*
+coverage
+dist
+build
+
+

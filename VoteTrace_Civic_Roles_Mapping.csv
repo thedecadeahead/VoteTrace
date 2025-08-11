@@ -1,0 +1,51 @@
+Position,officeLevel,role,example_officeName,notes
+President,country,headOfState,President of the United States,Also functions as headOfGovernment in U.S.; API role 'headOfState' is canonical.
+Vice President,country,deputyHeadOfGovernment,Office of the Vice President,Deputy head of government.
+U.S. Senator,country,legislatorUpperBody,United States Senate,Two per state.
+U.S. Representative,country,legislatorLowerBody,United States House of Representatives,Per congressional district.
+Resident Commissioner / Territorial Delegate,country,legislatorLowerBody,House of Representatives (PR/territories),Non‑voting members from territories.
+Governor,administrativeArea1,headOfGovernment,Office of the Governor,Head of state executive branch.
+Lieutenant Governor,administrativeArea1,deputyHeadOfGovernment,Office of the Lieutenant Governor,Only in states that have one.
+Attorney General,administrativeArea1,governmentOfficer,Attorney General,Statewide elected in most states.
+Secretary of State,administrativeArea1,governmentOfficer,Secretary of State,Elected in many states; appointed in some.
+Treasurer / Comptroller / Auditor,administrativeArea1,governmentOfficer,State Treasurer / Comptroller,Title varies by state.
+Agriculture Commissioner,administrativeArea1,governmentOfficer,Commissioner of Agriculture,Where elected.
+Insurance Commissioner,administrativeArea1,governmentOfficer,Commissioner of Insurance,Where elected.
+Education Superintendent / Commissioner,administrativeArea1,governmentOfficer,Superintendent of Public Instruction,Where elected.
+Public Service / Utilities Commissioner,administrativeArea1,governmentOfficer,Public Service Commission,Where elected; sometimes multi‑member.
+State Senator,administrativeArea1,legislatorUpperBody,State Senate,Upper chamber.
+State Representative / Assembly Member / Delegate,administrativeArea1,legislatorLowerBody,State House / Assembly,Lower chamber or unicameral where applicable.
+State Supreme Court Justice,administrativeArea1,highestCourtJudge,State Supreme Court,Where elected.
+State Appeals / District Court Judge,administrativeArea1,judge,Court of Appeals / District Court,Where elected.
+County Executive / Judge-Executive / Board Chair,administrativeArea2,headOfGovernment,County Executive,Title varies.
+County Commissioner / Supervisor,administrativeArea2,legislatorLowerBody,Board of Commissioners / Supervisors,Generally the county legislative body (often unicameral).
+County Clerk,administrativeArea2,governmentOfficer,County Clerk,"Records, elections, etc."
+County Treasurer,administrativeArea2,governmentOfficer,County Treasurer,Fiscal/treasury role.
+County Sheriff,administrativeArea2,governmentOfficer,Sheriff,Law enforcement.
+County Prosecutor / District Attorney,administrativeArea2,governmentOfficer,District Attorney,Criminal prosecutions.
+County Assessor,administrativeArea2,governmentOfficer,Assessor,Property assessment.
+County Recorder / Register of Deeds,administrativeArea2,governmentOfficer,Recorder of Deeds,Land and records.
+Coroner / Medical Examiner,administrativeArea2,governmentOfficer,Coroner,Where elected.
+County Judge (elected),administrativeArea2,judge,County Court,Where elected.
+Soil & Water Conservation District Supervisor,administrativeArea2,specialPurposeOfficer,Soil & Water Conservation District Board,Special district overlapping county level.
+Mayor,locality,headOfGovernment,Office of the Mayor,City/town chief executive.
+City Council Member / Alderman / Commissioner,locality,legislatorLowerBody,City Council,Local legislative body (unicameral).
+City Clerk,locality,governmentOfficer,City Clerk,Records/elections.
+City Treasurer,locality,governmentOfficer,City Treasurer,Finance.
+Municipal Judge,locality,judge,Municipal Court,Where elected.
+Borough President (NYC),locality,governmentOfficer,Borough President,NYC‑specific office.
+Town Supervisor / Select Board Member,locality,legislatorLowerBody,Town Board / Select Board,Local legislative body; may be executive in small towns.
+Ward / District Council Member,ward,legislatorLowerBody,Ward Council,Used in some cities with ward systems.
+School Board Member / Trustee,special,schoolBoard,Board of Education / School District,K‑12 districts.
+Community College Board Member,special,schoolBoard,Community College District Board,Where elected.
+Water District Board Member,special,specialPurposeOfficer,Water District Board,Special-purpose government.
+Fire Protection District Board Member,special,specialPurposeOfficer,Fire Protection District Board,Special-purpose government.
+Transit Authority Board Member,special,specialPurposeOfficer,Transit Authority Board,Some are appointed; include elected where applicable.
+Hospital District Board Member,special,specialPurposeOfficer,Hospital District Board,Special-purpose government.
+Library Board Trustee,special,specialPurposeOfficer,Public Library Board,Often elected in some jurisdictions.
+Port Authority Commissioner (elected),special,specialPurposeOfficer,Port Authority Board,Where elected.
+Tribal Chairperson / Chief / Governor,regional,headOfGovernment,Tribal Government Executive,Federally recognized tribes (roles vary).
+Tribal Council Member,regional,legislatorLowerBody,Tribal Council,Unicameral councils are common.
+Territorial Governor,regional,headOfGovernment,"Governor of Puerto Rico / Guam, etc.",U.S. territories.
+Territorial Legislator,regional,legislatorLowerBody,Territorial Legislature / House / Senate,Structure varies by territory.
+Local / County Judge (elected),locality,judge,Local Court,Where elected.

@@ -1,0 +1,38 @@
+version: '3.9'
+services:
+  app:
+    build: .
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_SITE_URL=http://localhost:3000
+      - GOOGLE_CIVIC_API_KEY=${GOOGLE_CIVIC_API_KEY}
+      - PROPUBLICA_API_KEY=${PROPUBLICA_API_KEY}
+      - FEC_API_KEY=${FEC_API_KEY}
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/votetrace?schema=public
+      - POSTGRES_URL=postgresql://postgres:postgres@db:5432/votetrace?schema=public
+      - REDIS_URL=redis://redis:6379
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+      - redis
+  db:
+    image: postgres:16
+    environment:
+      - POSTGRES_DB=votetrace
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+    command: redis-server --appendonly yes
+
+volumes:
+  db_data:
+
+
